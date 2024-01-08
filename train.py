@@ -50,7 +50,7 @@ if __name__ == "__main__":
     Init_lr = 1e-2
     Min_lr = Init_lr * 0.01
     optimizer_type = "sgd"
-    momentum = 0.937
+    momentum = 0.9
     weight_decay = 5e-4
     lr_decay_type = "cos"
     save_period = 10
