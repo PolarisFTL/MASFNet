@@ -1,3 +1,1 @@
-**MASFNet**
-
-Our core code will be released after the acceptance of the paper
+📖**MASFNet: Multi-scale Adaptive Sampling Fusion Network for Object Detection in Adverse Weather**
