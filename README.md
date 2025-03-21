@@ -3,6 +3,6 @@
 #### 📢News
 The core code will be released after the paper is published.
 <ul>
-<li>Mar 9, 2024: Submitted paper.
+<li>May 9, 2024: Submitted paper.
 </ul>
 
