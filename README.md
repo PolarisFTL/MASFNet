@@ -10,6 +10,6 @@
 
 #### 📢 News
 <ul>
-<li>[2025-04-07] The paper has been published！
+<li>[2025-04-07] The paper is already available for viewing at Early Access.
 <li> The code will be released soon.
 </ul>
