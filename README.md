@@ -14,5 +14,19 @@
 <li> The code will be released soon.
 </ul>
 
+#### 🔗Citation
+If this work is helpful for your research, please consider citing the following BibTeX entry.
+```
+@ARTICLE{10955257,
+  author={Liu, Zhenbing and Fang, Tianle and Lu, Haoxiang and Zhang, Weidong and Lan, Rushi},
+  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+  title={MASFNet: Multiscale Adaptive Sampling Fusion Network for Object Detection in Adverse Weather}, 
+  year={2025},
+  volume={63},
+  number={},
+  pages={1-15},
+}
+```
+
 #### 📨 Contact
 If you have any questions, please feel free to reach me out at polarisftl123@gmail.com
