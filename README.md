@@ -13,3 +13,6 @@
 <li>[2025-04-07] The paper is already available for viewing at Early Access.
 <li> The code will be released soon.
 </ul>
+
+#### 📨 Contact
+If you have any questions, please feel free to reach me out at polarisftl123@gmail.com
