@@ -24,7 +24,7 @@ If this work is helpful for your research, please consider citing the following 
   year={2025},
   volume={63},
   number={},
-  pages={1-15},
+  pages={1-15}
 }
 ```
 
