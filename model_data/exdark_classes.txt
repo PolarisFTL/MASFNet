@@ -1,0 +1,12 @@
+Bicycle
+Boat
+Bottle
+Bus
+Car
+Cat
+Chair
+Cup
+Dog
+Motorbike
+People
+Table

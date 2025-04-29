@@ -1,0 +1,4 @@
+motorbike 3 68 351 474
+motorbike 1 109 76 265 difficult
+pottedplant 298 153 375 245
+pottedplant 162 137 242 184

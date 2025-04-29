@@ -1,0 +1,8 @@
+chair 186 84 321 268
+chair 1 69 52 155
+chair 124 59 233 240
+diningtable 3 62 255 255
+diningtable 74 255 435 333
+person 309 48 500 333
+person 1 65 155 333
+pottedplant 243 1 348 132

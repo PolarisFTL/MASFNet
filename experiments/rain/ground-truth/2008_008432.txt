@@ -1,0 +1,5 @@
+aeroplane 16 92 481 369
+car 329 317 491 375 difficult
+car 313 289 500 375
+person 180 230 208 260 difficult
+person 169 242 183 285 difficult

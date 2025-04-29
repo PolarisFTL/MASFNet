@@ -1,0 +1,4 @@
+bicycle 31 40 482 322
+chair 118 1 167 22 difficult
+chair 70 1 109 25 difficult
+car 431 1 500 51

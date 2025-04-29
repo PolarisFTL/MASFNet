@@ -1,0 +1,7 @@
+person 351 179 385 271
+person 378 211 394 267 difficult
+person 390 170 421 273
+person 445 189 479 269
+person 444 194 463 227 difficult
+pottedplant 419 145 486 254
+train 75 84 408 351

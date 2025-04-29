@@ -1,0 +1,18 @@
+person 69 94 137 313
+person 144 106 208 315
+person 221 122 282 317
+person 17 110 67 243
+person 426 167 460 229
+person 430 218 490 320
+person 384 162 429 225
+person 208 116 241 173
+person 267 131 297 195
+person 347 150 383 240
+motorbike 196 178 355 307
+motorbike 274 163 380 293
+person 108 91 149 167
+person 1 112 25 156
+bottle 429 228 439 246 difficult
+bottle 423 226 431 248 difficult
+bottle 418 230 427 250 difficult
+bottle 410 229 419 261 difficult

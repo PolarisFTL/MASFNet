@@ -1,0 +1,5 @@
+tvmonitor 283 96 357 177
+person 274 86 447 321
+bottle 186 214 232 333
+chair 25 187 180 303
+person 42 85 172 303

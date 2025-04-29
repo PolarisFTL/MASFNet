@@ -1,0 +1,14 @@
+car 2 185 104 236
+car 19 196 103 237
+person 400 153 427 270
+pottedplant 328 153 420 294
+person 268 90 344 333
+person 168 121 227 304
+person 207 106 285 335
+person 149 174 190 241
+pottedplant 56 207 110 265
+person 101 179 147 275
+person 131 164 157 227 difficult
+person 100 167 128 209 difficult
+person 63 164 92 216
+person 38 160 64 236

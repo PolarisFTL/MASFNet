@@ -1,0 +1,5 @@
+bus 99 83 405 290
+car 2 177 52 199
+car 49 175 84 198 difficult
+car 55 177 95 196 difficult
+car 92 178 103 194 difficult

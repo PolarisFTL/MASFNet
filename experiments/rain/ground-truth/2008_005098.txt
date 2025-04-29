@@ -1,0 +1,2 @@
+person 32 36 252 400
+pottedplant 1 96 61 183 difficult

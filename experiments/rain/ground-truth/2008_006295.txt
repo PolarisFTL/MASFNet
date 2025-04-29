@@ -1,0 +1,10 @@
+tvmonitor 161 32 337 198
+bottle 296 236 337 375
+person 49 188 224 329
+person 223 134 436 375
+person 252 115 448 375
+person 428 251 500 375 difficult
+pottedplant 431 11 500 275
+pottedplant 10 104 63 267
+pottedplant 31 1 142 246
+diningtable 1 298 352 375 difficult

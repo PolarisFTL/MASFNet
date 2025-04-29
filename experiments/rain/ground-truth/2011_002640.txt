@@ -1,0 +1,9 @@
+bottle 238 165 251 204
+chair 350 244 431 333
+chair 46 218 153 333
+chair 1 186 12 243 difficult
+diningtable 149 198 361 333
+chair 1 177 62 329
+person 347 106 452 286
+person 128 124 209 250
+person 53 130 221 333

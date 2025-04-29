@@ -1,0 +1,7 @@
+sofa 68 59 500 269
+dog 153 140 270 267
+person 27 1 152 259
+person 84 42 487 154
+person 1 133 94 359
+tvmonitor 1 1 34 68
+bottle 369 279 423 324

@@ -1,0 +1,4 @@
+dog 352 210 436 322
+person 23 2 258 375
+pottedplant 182 101 246 180
+chair 165 322 304 375 difficult

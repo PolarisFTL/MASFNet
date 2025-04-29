@@ -1,0 +1,4 @@
+person 202 70 332 398
+person 64 32 227 398
+person 318 93 470 398
+pottedplant 9 162 72 288

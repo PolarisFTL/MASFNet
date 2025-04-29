@@ -1,0 +1,2 @@
+person 80 57 332 394
+bottle 1 167 14 203 difficult

@@ -1,0 +1,10 @@
+tvmonitor 233 180 277 262
+tvmonitor 275 181 310 274
+tvmonitor 119 174 140 208 difficult
+person 84 190 279 434
+person 39 170 113 260
+chair 55 288 175 455
+chair 25 242 94 351
+bottle 328 279 347 340
+bottle 338 276 352 333
+bottle 88 207 100 234 difficult

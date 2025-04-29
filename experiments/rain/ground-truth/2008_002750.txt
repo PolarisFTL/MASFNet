@@ -1,0 +1,12 @@
+person 113 148 181 326
+person 166 1 220 152
+person 147 1 197 126
+person 443 38 500 187
+person 1 1 24 79 difficult
+person 1 56 20 114 difficult
+person 212 130 279 298
+person 256 127 327 302
+person 261 141 328 305
+person 297 160 352 327
+person 332 128 384 287
+person 330 167 378 333

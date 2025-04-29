@@ -1,0 +1,9 @@
+car 1 317 75 346
+person 135 311 147 349
+person 123 313 134 350 difficult
+person 183 311 197 356
+person 430 315 448 357
+person 42 312 61 357 difficult
+person 67 311 85 351
+person 202 316 220 359
+person 194 312 206 349 difficult

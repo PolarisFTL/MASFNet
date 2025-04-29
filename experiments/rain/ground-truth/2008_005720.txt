@@ -1,0 +1,5 @@
+boat 36 119 500 328
+bus 1 345 120 374
+car 297 359 352 374 difficult
+bus 120 347 140 374 difficult
+bus 138 355 176 374 difficult

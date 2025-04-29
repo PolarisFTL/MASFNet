@@ -1,0 +1,8 @@
+pottedplant 399 203 410 221 difficult
+tvmonitor 389 220 423 248
+person 151 208 222 283
+sofa 114 217 247 328 difficult
+chair 321 237 430 338
+chair 153 296 215 364
+chair 191 250 306 372
+diningtable 1 320 208 375

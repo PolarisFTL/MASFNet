@@ -16,7 +16,34 @@ matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 import numpy as np
 
+'''
+    0,0 ------> x (width)
+     |
+     |  (Left,Top)
+     |      *_________
+     |      |         |
+            |         |
+     y      |_________|
+  (height)            *
+                (Right,Bottom)
+'''
+
 def log_average_miss_rate(precision, fp_cumsum, num_images):
+    """
+        log-average miss rate:
+            Calculated by averaging miss rates at 9 evenly spaced FPPI points
+            between 10e-2 and 10e0, in log-space.
+
+        output:
+                lamr | log-average miss rate
+                mr | miss rate
+                fppi | false positives per image
+
+        references:
+            [1] Dollar, Piotr, et al. "Pedestrian Detection: An Evaluation of the
+               State of the Art." Pattern Analysis and Machine Intelligence, IEEE
+               Transactions on 34.4 (2012): 743 - 761.
+    """
 
     if precision.size == 0:
         lamr = 0
@@ -39,10 +66,16 @@ def log_average_miss_rate(precision, fp_cumsum, num_images):
 
     return lamr, mr, fppi
 
+"""
+ throw error and exit
+"""
 def error(msg):
     print(msg)
     sys.exit(0)
 
+"""
+ check if the number is a float between 0.0 and 1.0
+"""
 def is_float_between_0_and_1(value):
     try:
         val = float(value)
@@ -53,35 +86,70 @@ def is_float_between_0_and_1(value):
     except ValueError:
         return False
 
+"""
+ Calculate the AP given the recall and precision array
+    1st) We compute a version of the measured precision/recall curve with
+         precision monotonically decreasing
+    2nd) We compute the AP as the area under this curve by numerical integration.
+"""
 def voc_ap(rec, prec):
-
-    rec.insert(0, 0.0) 
-    rec.append(1.0) 
+    """
+    --- Official matlab code VOC2012---
+    mrec=[0 ; rec ; 1];
+    mpre=[0 ; prec ; 0];
+    for i=numel(mpre)-1:-1:1
+            mpre(i)=max(mpre(i),mpre(i+1));
+    end
+    i=find(mrec(2:end)~=mrec(1:end-1))+1;
+    ap=sum((mrec(i)-mrec(i-1)).*mpre(i));
+    """
+    rec.insert(0, 0.0) # insert 0.0 at begining of list
+    rec.append(1.0) # insert 1.0 at end of list
     mrec = rec[:]
-    prec.insert(0, 0.0) 
-    prec.append(0.0) 
+    prec.insert(0, 0.0) # insert 0.0 at begining of list
+    prec.append(0.0) # insert 0.0 at end of list
     mpre = prec[:]
-
+    """
+     This part makes the precision monotonically decreasing
+        (goes from the end to the beginning)
+        matlab: for i=numel(mpre)-1:-1:1
+                    mpre(i)=max(mpre(i),mpre(i+1));
+    """
     for i in range(len(mpre)-2, -1, -1):
         mpre[i] = max(mpre[i], mpre[i+1])
-
+    """
+     This part creates a list of indexes where the recall changes
+        matlab: i=find(mrec(2:end)~=mrec(1:end-1))+1;
+    """
     i_list = []
     for i in range(1, len(mrec)):
         if mrec[i] != mrec[i-1]:
-            i_list.append(i) 
-  
+            i_list.append(i) # if it was matlab would be i + 1
+    """
+     The Average Precision (AP) is the area under the curve
+        (numerical integration)
+        matlab: ap=sum((mrec(i)-mrec(i-1)).*mpre(i));
+    """
     ap = 0.0
     for i in i_list:
         ap += ((mrec[i]-mrec[i-1])*mpre[i])
     return ap, mrec, mpre
 
+
+"""
+ Convert the lines of a file to a list
+"""
 def file_lines_to_list(path):
+    # open txt file lines to a list
     with open(path) as f:
         content = f.readlines()
+    # remove whitespace characters like `\n` at the end of each line
     content = [x.strip() for x in content]
     return content
 
-
+"""
+ Draws text in image
+"""
 def draw_text_in_image(img, text, pos, color, line_width):
     font = cv2.FONT_HERSHEY_PLAIN
     fontScale = 1
@@ -96,19 +164,37 @@ def draw_text_in_image(img, text, pos, color, line_width):
     text_width, _ = cv2.getTextSize(text, font, fontScale, lineType)[0]
     return img, (line_width + text_width)
 
+"""
+ Plot - adjust axes
+"""
 def adjust_axes(r, t, fig, axes):
+    # get text width for re-scaling
     bb = t.get_window_extent(renderer=r)
     text_width_inches = bb.width / fig.dpi
+    # get axis width in inches
     current_fig_width = fig.get_figwidth()
     new_fig_width = current_fig_width + text_width_inches
     propotion = new_fig_width / current_fig_width
+    # get axis limit
     x_lim = axes.get_xlim()
     axes.set_xlim([x_lim[0], x_lim[1]*propotion])
 
+"""
+ Draw plot using Matplotlib
+"""
 def draw_plot_func(dictionary, n_classes, window_title, plot_title, x_label, output_path, to_show, plot_color, true_p_bar):
+    # sort the dictionary by decreasing value, into a list of tuples
     sorted_dic_by_value = sorted(dictionary.items(), key=operator.itemgetter(1))
+    # unpacking the list of tuples into two lists
     sorted_keys, sorted_values = zip(*sorted_dic_by_value)
+    # 
     if true_p_bar != "":
+        """
+         Special case to draw in:
+            - green -> TP: True Positives (object detected and matches ground-truth)
+            - red -> FP: False Positives (object detected but does not match ground-truth)
+            - orange -> FN: False Negatives (object not detected but present in the ground-truth)
+        """
         fp_sorted = []
         tp_sorted = []
         for key in sorted_keys:
@@ -116,9 +202,12 @@ def draw_plot_func(dictionary, n_classes, window_title, plot_title, x_label, out
             tp_sorted.append(true_p_bar[key])
         plt.barh(range(n_classes), fp_sorted, align='center', color='crimson', label='False Positive')
         plt.barh(range(n_classes), tp_sorted, align='center', color='forestgreen', label='True Positive', left=fp_sorted)
+        # add legend
         plt.legend(loc='lower right')
-     
-        fig = plt.gcf() 
+        """
+         Write number on side of bar
+        """
+        fig = plt.gcf() # gcf - get current figure
         axes = plt.gca()
         r = fig.canvas.get_renderer()
         for i, val in enumerate(sorted_values):
@@ -126,47 +215,62 @@ def draw_plot_func(dictionary, n_classes, window_title, plot_title, x_label, out
             tp_val = tp_sorted[i]
             fp_str_val = " " + str(fp_val)
             tp_str_val = fp_str_val + " " + str(tp_val)
+            # trick to paint multicolor with offset:
+            # first paint everything and then repaint the first number
             t = plt.text(val, i, tp_str_val, color='forestgreen', va='center', fontweight='bold')
             plt.text(val, i, fp_str_val, color='crimson', va='center', fontweight='bold')
-            if i == (len(sorted_values)-1): 
+            if i == (len(sorted_values)-1): # largest bar
                 adjust_axes(r, t, fig, axes)
     else:
         plt.barh(range(n_classes), sorted_values, color=plot_color)
         """
          Write number on side of bar
         """
-        fig = plt.gcf() 
+        fig = plt.gcf() # gcf - get current figure
         axes = plt.gca()
         r = fig.canvas.get_renderer()
         for i, val in enumerate(sorted_values):
-            str_val = " " + str(val) 
+            str_val = " " + str(val) # add a space before
             if val < 1.0:
                 str_val = " {0:.2f}".format(val)
             t = plt.text(val, i, str_val, color=plot_color, va='center', fontweight='bold')
-            if i == (len(sorted_values)-1): 
+            # re-set axes to show number inside the figure
+            if i == (len(sorted_values)-1): # largest bar
                 adjust_axes(r, t, fig, axes)
+    # set window title
     fig.canvas.set_window_title(window_title)
+    # write classes in y axis
     tick_font_size = 12
     plt.yticks(range(n_classes), sorted_keys, fontsize=tick_font_size)
     """
      Re-scale height accordingly
     """
     init_height = fig.get_figheight()
+    # comput the matrix height in points and inches
     dpi = fig.dpi
-    height_pt = n_classes * (tick_font_size * 1.4)
+    height_pt = n_classes * (tick_font_size * 1.4) # 1.4 (some spacing)
     height_in = height_pt / dpi
-    top_margin = 0.15 
-    bottom_margin = 0.05 
+    # compute the required figure height 
+    top_margin = 0.15 # in percentage of the figure height
+    bottom_margin = 0.05 # in percentage of the figure height
     figure_height = height_in / (1 - top_margin - bottom_margin)
+    # set new height
     if figure_height > init_height:
         fig.set_figheight(figure_height)
 
+    # set plot title
     plt.title(plot_title, fontsize=14)
+    # set axis titles
+    # plt.xlabel('classes')
     plt.xlabel(x_label, fontsize='large')
+    # adjust size of window
     fig.tight_layout()
+    # save the plot
     fig.savefig(output_path)
+    # show image
     if to_show:
         plt.show()
+    # close the plot
     plt.close()
 
 def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
@@ -317,6 +421,7 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
     ap_dictionary = {}
     lamr_dictionary = {}
     with open(RESULTS_FILES_PATH + "/results.txt", 'w') as results_file:
+        results_file.write("# AP and precision/recall per class\n")
         count_true_positives = {}
 
         for class_index, class_name in enumerate(gt_classes):
@@ -393,6 +498,10 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
                     fp[idx] = 1
                     if ovmax > 0:
                         status = "INSUFFICIENT OVERLAP"
+
+                """
+                Draw image to show animation
+                """
                 if show_animation:
                     height, widht = img.shape[:2]
                     white           = (255,255,255)
@@ -400,6 +509,7 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
                     green           = (0,255,0)
                     light_red       = (30,30,255)
                     margin          = 10
+                    # 1nd line
                     v_pos           = int(height - margin - (bottom_border / 2.0))
                     text            = "Image: " + ground_truth_img[0] + " "
                     img, line_width = draw_text_in_image(img, text, (margin, v_pos), white, 0)
@@ -413,8 +523,10 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
                             text    = "IoU: {0:.2f}% ".format(ovmax*100) + ">= {0:.2f}% ".format(min_overlap*100)
                             color   = green
                         img, _ = draw_text_in_image(img, text, (margin + line_width, v_pos), color, line_width)
+                    # 2nd line
                     v_pos           += int(bottom_border / 2.0)
                     rank_pos        = str(idx+1)
+                    text            = "Detection #rank: " + rank_pos + " confidence: {0:.2f}% ".format(float(detection["confidence"])*100)
                     img, line_width = draw_text_in_image(img, text, (margin, v_pos), white, 0)
                     color           = light_red
                     if status == "MATCH!":
@@ -461,6 +573,7 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
             F1  = np.array(rec)*np.array(prec)*2 / np.where((np.array(prec)+np.array(rec))==0, 1, (np.array(prec)+np.array(rec)))
 
             sum_AP  += ap
+            text    = "{0:.2f}%".format(ap*100) + " = " + class_name + " AP " #class_name + " AP = {0:.2f}%".format(ap*100)
 
             if len(prec)>0:
                 F1_text         = "{0:.2f}".format(F1[score_threhold_idx]) + " = " + class_name + " F1 "
@@ -539,6 +652,7 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
         if n_classes == 0:
             print("未检测到任何种类，请检查标签信息与get_map.py中的classes_path是否修改。")
             return 0
+        results_file.write("\n# mAP of all classes\n")
         mAP     = sum_AP / n_classes
         text    = "mAP = {0:.2f}%".format(mAP*100)
         results_file.write(text + "\n")
@@ -546,6 +660,9 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
 
     shutil.rmtree(TEMP_FILES_PATH)
 
+    """
+    Count total of detection-results
+    """
     det_counter_per_class = {}
     for txt_file in dr_files_list:
         lines_list = file_lines_to_list(txt_file)
@@ -557,15 +674,26 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
                 det_counter_per_class[class_name] = 1
     dr_classes = list(det_counter_per_class.keys())
 
+    """
+    Write number of ground-truth objects per class to results.txt
+    """
     with open(RESULTS_FILES_PATH + "/results.txt", 'a') as results_file:
+        results_file.write("\n# Number of ground-truth objects per class\n")
         for class_name in sorted(gt_counter_per_class):
             results_file.write(class_name + ": " + str(gt_counter_per_class[class_name]) + "\n")
 
+    """
+    Finish counting true positives
+    """
     for class_name in dr_classes:
         if class_name not in gt_classes:
             count_true_positives[class_name] = 0
 
+    """
+    Write number of detected objects per class to results.txt
+    """
     with open(RESULTS_FILES_PATH + "/results.txt", 'a') as results_file:
+        results_file.write("\n# Number of detected objects per class\n")
         for class_name in sorted(dr_classes):
             n_det = det_counter_per_class[class_name]
             text = class_name + ": " + str(n_det)
@@ -573,6 +701,9 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
             text += ", fp:" + str(n_det - count_true_positives[class_name]) + ")\n"
             results_file.write(text)
 
+    """
+    Plot the total number of occurences of each class in the ground-truth
+    """
     if draw_plot:
         window_title = "ground-truth-info"
         plot_title = "ground-truth\n"
@@ -593,8 +724,37 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
             '',
             )
 
+    # """
+    # Plot the total number of occurences of each class in the "detection-results" folder
+    # """
+    # if draw_plot:
+    #     window_title = "detection-results-info"
+    #     # Plot title
+    #     plot_title = "detection-results\n"
+    #     plot_title += "(" + str(len(dr_files_list)) + " files and "
+    #     count_non_zero_values_in_dictionary = sum(int(x) > 0 for x in list(det_counter_per_class.values()))
+    #     plot_title += str(count_non_zero_values_in_dictionary) + " detected classes)"
+    #     # end Plot title
+    #     x_label = "Number of objects per class"
+    #     output_path = RESULTS_FILES_PATH + "/detection-results-info.png"
+    #     to_show = False
+    #     plot_color = 'forestgreen'
+    #     true_p_bar = count_true_positives
+    #     draw_plot_func(
+    #         det_counter_per_class,
+    #         len(det_counter_per_class),
+    #         window_title,
+    #         plot_title,
+    #         x_label,
+    #         output_path,
+    #         to_show,
+    #         plot_color,
+    #         true_p_bar
+    #         )
 
-
+    """
+    Draw log-average miss rate plot (Show lamr of all classes in decreasing order)
+    """
     if draw_plot:
         window_title = "lamr"
         plot_title = "log-average miss rate"
@@ -614,7 +774,9 @@ def get_map(MINOVERLAP, draw_plot, score_threhold=0.5, path = './map_out'):
             ""
             )
 
-
+    """
+    Draw mAP plot (Show AP's of all classes in decreasing order)
+    """
     if draw_plot:
         window_title = "mAP"
         plot_title = "mAP = {0:.2f}%".format(mAP*100)
@@ -744,7 +906,7 @@ def get_coco_map(class_names, path):
         results_dr  = preprocess_dr(DR_PATH, class_names)
         json.dump(results_dr, f, indent=4)
         if len(results_dr) == 0:
-            print("未检测到任何目标。")
+            print("no targets")
             return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     cocoGt      = COCO(GT_JSON_PATH)

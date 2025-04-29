@@ -1,0 +1,4 @@
+car 1 268 67 374
+person 231 208 264 316
+person 162 250 197 326 difficult
+person 127 76 135 143 difficult

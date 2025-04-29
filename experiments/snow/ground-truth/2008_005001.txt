@@ -1,0 +1,9 @@
+pottedplant 53 241 100 293
+pottedplant 80 143 115 176
+pottedplant 437 208 459 234
+pottedplant 441 150 473 170
+pottedplant 330 146 358 185
+pottedplant 250 163 292 207 difficult
+person 295 144 328 202
+pottedplant 158 164 191 183 difficult
+pottedplant 208 161 235 186 difficult

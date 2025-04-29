@@ -1,0 +1,3 @@
+bus 50 26 404 284
+person 397 151 444 280
+person 391 154 401 224 difficult

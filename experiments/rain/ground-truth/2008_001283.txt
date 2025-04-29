@@ -1,0 +1,4 @@
+person 1 1 281 375
+bird 419 121 458 153 difficult
+bird 282 105 304 131 difficult
+pottedplant 105 1 254 201

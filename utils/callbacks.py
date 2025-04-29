@@ -6,7 +6,6 @@ import matplotlib
 matplotlib.use('Agg')
 import scipy.signal
 from matplotlib import pyplot as plt
-from torch.utils.tensorboard import SummaryWriter
 
 import shutil
 import numpy as np
@@ -25,10 +24,8 @@ class LossHistory():
         self.val_loss   = []
         
         os.makedirs(self.log_dir)
-        self.writer     = SummaryWriter(self.log_dir)
         try:
             dummy_input     = torch.randn(2, 3, input_shape[0], input_shape[1])
-            self.writer.add_graph(model, dummy_input)
         except:
             pass
 
@@ -46,8 +43,6 @@ class LossHistory():
             f.write(str(val_loss))
             f.write("\n")
 
-        self.writer.add_scalar('loss', loss, epoch)
-        self.writer.add_scalar('val_loss', val_loss, epoch)
         self.loss_plot()
 
     def loss_plot(self):
@@ -55,7 +50,6 @@ class LossHistory():
 
         plt.figure()
         plt.plot(iters, self.losses, 'red', linewidth = 2, label='train loss')
-        plt.plot(iters, self.val_loss, 'coral', linewidth = 2, label='val loss')
         try:
             if len(self.losses) < 25:
                 num = 5

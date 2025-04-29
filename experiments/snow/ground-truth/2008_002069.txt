@@ -1,0 +1,3 @@
+person 1 80 301 375
+person 178 64 500 375
+tvmonitor 28 98 70 132 difficult

@@ -1,0 +1,6 @@
+car 327 187 406 216
+car 221 180 267 194
+car 156 160 177 168 difficult
+car 93 157 110 167 difficult
+car 483 199 500 227
+aeroplane 182 99 318 150

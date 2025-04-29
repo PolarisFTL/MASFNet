@@ -1,0 +1,3 @@
+person 15 53 266 375
+tvmonitor 262 79 450 265
+chair 1 222 67 375

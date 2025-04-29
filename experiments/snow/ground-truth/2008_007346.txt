@@ -1,0 +1,8 @@
+person 82 142 88 154 difficult
+person 280 185 297 205 difficult
+person 267 184 280 204 difficult
+person 255 183 269 204 difficult
+person 243 184 257 203 difficult
+boat 208 199 344 212
+car 410 117 456 132
+car 71 142 109 153

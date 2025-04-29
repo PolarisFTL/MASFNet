@@ -1,0 +1,7 @@
+bicycle 88 324 224 408
+bicycle 8 309 20 340 difficult
+bicycle 18 312 37 335 difficult
+bicycle 34 314 47 342 difficult
+bicycle 41 308 60 340 difficult
+bicycle 179 307 192 338 difficult
+person 109 262 162 380

@@ -1,0 +1,8 @@
+bus 43 60 419 298
+motorbike 143 228 226 300
+person 165 209 197 281
+car 1 234 50 286
+car 1 200 49 251 difficult
+car 446 230 500 258
+car 452 244 500 324 difficult
+car 417 239 451 292
