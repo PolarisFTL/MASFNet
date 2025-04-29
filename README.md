@@ -24,17 +24,16 @@ _An overview of the proposed MASFNet. MASFNet consists of four parts: 1) FAENet,
 > - Numpy 1.17.0
 > - Opencv-python 4.1.2.30
 
-#### Installation
+#### 👽 Installation
 
 ```
 # Clone the MASFNet
 git clone https://github.com/PolarisFTL/MASFNet.git
 # Install dependent packages
 cd MASFNet
-pip install -r requirements.txt
 ```
 
-#### Datasets
+#### 🚗 Datasets
 
 | Dataset Name | Total Images | Train Set | Test Set | Google Drive                               | BaiduYun                                                           |
 | ------------ | ------------ | --------- | -------- | ------------------------------------------ | ------------------------------------------------------------------ |
@@ -43,7 +42,7 @@ pip install -r requirements.txt
 | VOC-Rain     | -            | -         | -        | [Loading...](https://drive.google.com/xxx) | [Loading... (key:1234)](...)                                       |
 | VOC-Snow     | -            | -         | -        | [Loading...](https://drive.google.com/xxx) | [Loading... (key:1234)](...)                                       |
 
-#### Training and Testing
+#### 🎈 Training and Testing
 
 Run the following commands for training & testing:
 🐻 You need to download the pre-training weights and datasets firstly.
