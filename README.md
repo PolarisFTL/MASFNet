@@ -13,7 +13,7 @@ _An overview of the proposed MASFNet. MASFNet consists of four parts: 1) FAENet,
 
 <ul>
 <li>[2025-04-07] The paper is already available for viewing at Early Access.
-<li> The code has been uploaded.
+<li>[2025-04-29] The code has been uploaded.
 </ul>
 
 #### 🔧 Requirements and Installation
