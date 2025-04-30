@@ -44,7 +44,7 @@ cd MASFNet
 
 #### 🎈 Training and Testing
 
-Run the following commands for training & testing:
+Run the following commands for training & testing:\
 🐻 You need to download the pre-training weights and datasets firstly.
 
 | Name           | Google                                                                                                                | BaiduYun                                                                                   |
