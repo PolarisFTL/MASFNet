@@ -12,6 +12,8 @@ _An overview of the proposed MASFNet. MASFNet consists of four parts: 1) FAENet,
 #### 📢 News
 
 <ul>
+<li>[2024-05-09] The paper is submitted.
+<li>[2025-04-01] The paper is accepted.
 <li>[2025-04-07] The paper is already available for viewing at Early Access.
 <li>[2025-04-29] The code has been uploaded.
 </ul>
