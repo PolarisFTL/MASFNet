@@ -6,14 +6,14 @@
 
 ---
 
-![network](https://github.com/user-attachments/assets/1deeb63b-003e-4163-8b77-5f8cfc42194d)
+![network](https://github.com/PolarisFTL/MASFNet/blob/main/figs/network.png)
 _An overview of the proposed MASFNet. MASFNet consists of four parts: 1) FAENet, 2) Backbone, 3) MSFNet, and 4) DH. Among them, the FAENet utilizes the Laplacian pyramid decomposition to split the input image into two different components, a low-frequency component (LF) and a high-frequency component (HF). The feature information of the input image is then adaptively enhanced through modular processing. Then, the output of FAENet is fed into the backbone for feature extraction. The backbone eventually outputs two different scale feature maps into MSFNet for multi-scale fusion. Finally, the DH detects targets and calculates the loss to optimize the model._
 
 #### 😶‍🌫️ Experiments
 
 ![](https://github.com/PolarisFTL/MASFNet/blob/main/figs/mist.png)
 ![](https://github.com/PolarisFTL/MASFNet/blob/main/figs/mid-foggy.png)
-![](https://github.com/PolarisFTL/MASFNet/blob/main/figs/high_foggy.png)
+![](https://github.com/PolarisFTL/MASFNet/blob/main/figs/high-foggy.png)
 ![](https://github.com/PolarisFTL/MASFNet/blob/main/figs/low-light.png)
 ![](https://github.com/PolarisFTL/MASFNet/blob/main/figs/exdark.png)
 
