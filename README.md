@@ -54,23 +54,23 @@ Run the following commands for training & testing:
 
 ```python
 # train MASFNet for RTTS dataset
-1️⃣ python tools/voc_annotations.py
+1python tools/voc_annotations.py
 # VOCdevkit_path='the path of RTTS dataset', data_name='rtts'
-2️⃣ modify the config.py
+modify the config.py
 # data_name='rtts'
-3️⃣ python train.py
+python train.py
 # during training, the result will be saved in the logs-rtts
 ```
 
 ```python
 # eval MASFNet for RTTS dataset
-1️⃣ python tools/get_map.py
+python tools/get_map.py
 # data_name='rtts,
 # vocdevkit_path='the path of RTTS datase'
 # model_path = 'los-rtts/best_epoch_weights.pth'
-2️⃣ python tools/fps.py
+python tools/fps.py
 # compute the speed of model
-3️⃣ python tools/predict.py
+python tools/predict.py
 # try to predict the image in adverse weather
 ```
 
