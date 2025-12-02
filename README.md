@@ -66,7 +66,7 @@ Run the following commands for training & testing:\
 
 ```python
 # train MASFNet for RTTS dataset
-1python tools/voc_annotations.py
+python tools/voc_annotations.py
 # VOCdevkit_path='the path of RTTS dataset', data_name='rtts'
 modify the config.py
 # data_name='rtts'
