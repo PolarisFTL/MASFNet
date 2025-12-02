@@ -78,7 +78,7 @@ python train.py
 # eval MASFNet for RTTS dataset
 python tools/get_map.py
 # data_name='rtts,
-# vocdevkit_path='the path of RTTS datase'
+# vocdevkit_path='the path of RTTS dataset'
 # model_path = 'los-rtts/best_epoch_weights.pth'
 python tools/fps.py
 # compute the speed of model
@@ -102,14 +102,12 @@ The steps are the same if training other datasets.
 If this work is helpful for your research, please consider citing the following BibTeX entry.
 
 ```
-@ARTICLE{10955257,
+@article{liu2025masfnet,
+  title={MASFNet: Multi-scale Adaptive Sampling Fusion Network for Object Detection in Adverse Weather},
   author={Liu, Zhenbing and Fang, Tianle and Lu, Haoxiang and Zhang, Weidong and Lan, Rushi},
   journal={IEEE Transactions on Geoscience and Remote Sensing},
-  title={MASFNet: Multiscale Adaptive Sampling Fusion Network for Object Detection in Adverse Weather},
   year={2025},
-  volume={63},
-  number={},
-  pages={1-15}
+  publisher={IEEE}
 }
 ```
 
